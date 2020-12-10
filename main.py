@@ -5,7 +5,7 @@ import datetime
 
 # Dummy database
 from db.user_db import UserInDB
-from db.user_db import update_user, get_user
+from db.user_db import save_user, get_user
 
 # Models
 from models.user_models import UserIn, UserOut
@@ -23,12 +23,20 @@ async def doku_main():
 # ADMINISTRATION MODULES HTTP METHODS
 # POST HTTP method to create a new user
 @doku.post("/user/admon/create/")
-async def create_user():
-    pass
+async def create_user(user_in: UserIn):
+    user_in_db = get_user(user_in.username)
+
+    if user_in_db != None:
+        raise HTTPException(status_code=400, detail="El usuario ya existe")
+
+    user_creation = UserInDB(**user_in.dict(), files = 0)
+
+    user_creation = save_user(user_creation)
+    return {"Creación": True}
 
 # GET HTTP method to consult an existing user
 @doku.get("/user/admon/{username}/")
-async def get_user(username: str):
+async def search_user(username: str):
     user_in_db = get_user(username)
     if user_in_db == None:
         raise HTTPException(status_code=404, detail="El usuario no existe")
