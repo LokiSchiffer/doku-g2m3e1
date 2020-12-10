@@ -12,6 +12,11 @@ from fastapi import HTTPException
 
 doku = FastAPI()
 
+#MAIN PAGE FOR THE DOKU WEB APPLICATION
+@doku.get("/")
+async def doku_main():
+    pass
+
 # ADMINISTRATION MODULES HTTP METHODS
 # POST HTTP method to create a new user
 @doku.post("/user/admon/create/")
@@ -77,6 +82,6 @@ async def delete_notification():
     pass
 
 # GET HTTP method to show a notification
-@doku.post("/storage/notifications/show/")
+@doku.get("/storage/notifications/show/")
 async def show_notification():
     pass
