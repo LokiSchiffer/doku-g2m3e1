@@ -28,7 +28,7 @@ async def create_user(user_in: UserIn):
 
     if user_in_db != None:
         raise HTTPException(status_code=400, detail="El usuario ya existe")
-    
+
     user_creation = UserInDB(**user_in.dict(), files = 0)
 
     user_creation = save_user(user_creation)
