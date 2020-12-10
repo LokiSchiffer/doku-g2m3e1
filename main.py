@@ -25,8 +25,12 @@ async def create_user():
 
 # GET HTTP method to consult an existing user
 @doku.get("/user/admon/{username}/")
-async def get_user():
-    pass
+async def get_user(username: str):
+    user_in_db = get_user(username)
+    if user_in_db == None:
+        raise HTTPException(status_code=404, detail="El usuario no existe")
+    user_out = UserOut(**user_in_db.dict())
+    return user_out
 
 # PUT HTTP method to update an existing user
 @doku.put("/user/admon/update/")
