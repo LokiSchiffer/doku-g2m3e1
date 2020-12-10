@@ -61,7 +61,7 @@ async def delete_file():
     pass
 
 # PUT HTTP method for documents data update
-@doku.update("/storage/archive/update/")
+@doku.put("/storage/archive/update/")
 async def update_file():
     pass
 
