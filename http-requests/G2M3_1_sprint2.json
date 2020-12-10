@@ -1,0 +1,68 @@
+{
+	"info": {
+		"_postman_id": "93bd97fe-96ce-473e-a6ae-eb00841cacb1",
+		"name": "G2M3_1_sprint2",
+		"description": "Collection to test GET and POST HTTP methods of DOKU app",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "create_user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\":\"lmgaero@mail.com\",\n    \"password\":\"secreto\",\n    \"files\":20\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://doku-app.herokuapp.com/user/admon/create/",
+					"protocol": "https",
+					"host": [
+						"doku-app",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"user",
+						"admon",
+						"create",
+						""
+					]
+				},
+				"description": "POST method to create a new user"
+			},
+			"response": []
+		},
+		{
+			"name": "search_user",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://doku-app.herokuapp.com/user/admon/kuga23@mail.com/",
+					"protocol": "https",
+					"host": [
+						"doku-app",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"user",
+						"admon",
+						"kuga23@mail.com",
+						""
+					]
+				},
+				"description": "GET method to search for an existing user"
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
