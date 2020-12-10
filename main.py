@@ -1,14 +1,17 @@
-# Imports
+# IMPORTS
+import datetime
 
 # DateTime
 
 # Dummy database
+from db.user_db import UserInDB
+from db.user_db import update_user, get_user
 
 # Models
+from models.user_models import UserIn, UserOut
 
 # FastAPI and HTTPException
-from fastapi import FastAPI
-from fastapi import HTTPException
+from fastapi import FastAPI, HTTPException
 
 doku = FastAPI()
 
