@@ -38,7 +38,7 @@ def get_user(username: str):
     else:
         return None
 
-def update_user(user_in_db: UserInDB):
+def save_user(user_in_db: UserInDB):
     database_users[user_in_db.username] = user_in_db
     return user_in_db
 
