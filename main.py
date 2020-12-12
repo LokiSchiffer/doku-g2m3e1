@@ -5,7 +5,7 @@ import datetime
 
 # Dummy database
 from db.user_db import UserInDB
-from db.user_db import save_user, get_user
+from db.user_db import save_user, get_user, eliminate_user
 
 # Models
 from models.user_models import UserIn, UserOut
@@ -50,8 +50,15 @@ async def update_user():
 
 # DELETE HTTP method to delete an existing user
 @doku.delete('/user/admon/delete/')
-async def delete_user():
-    pass
+async def delete_user(user_in: UserIn):
+    user_in_db = get_user(user_in.username)
+    if user_in_db == None:
+        raise HTTPException(status_code=404, detail="El usuario no existe")
+    if user_in_db.password != user_in.password:
+        raise HTTPException(status_code=400, detail="Password incorrecto")
+    user_deleted = eliminate_user(user_in_db.username)
+    user_out = UserOut(**user_deleted.dict())
+    return {"Eliminado": user_out}
 
 # AUTHENTICATION MODULE HTTP METHODS
 # GET HTTP method to obtain login information

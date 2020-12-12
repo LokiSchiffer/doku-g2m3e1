@@ -42,3 +42,9 @@ def save_user(user_in_db: UserInDB):
     database_users[user_in_db.username] = user_in_db
     return user_in_db
 
+def eliminate_user(username: str):
+    if username in database_users.keys():
+        user_deleted = database_users.pop(username)
+        return user_deleted
+    else:
+        return None
