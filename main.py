@@ -13,7 +13,28 @@ from models.user_models import UserIn, UserOut
 # FastAPI and HTTPException
 from fastapi import FastAPI, HTTPException
 
+# CORS Policy
+
+from fastapi.middleware.cors import CORSMiddleware
+
 doku = FastAPI()
+
+# List of permited origins
+
+origins = [
+    "http://localhost.tiangolo.com",
+    "https://localhost.tiangolo.com",
+    "http://localhost",
+    "http://localhost:8080",
+    "https://doku-api.herokuapp.com"
+]
+
+# Adding CORS policy execution
+
+doku.add_middleware(
+    CORSMiddleware, allow_origins=origins,
+    allow_credentials=True, allow_methods=["*"], allow_headers=["*"],
+)
 
 #MAIN PAGE FOR THE DOKU WEB APPLICATION
 @doku.get("/")
