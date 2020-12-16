@@ -56,7 +56,7 @@ async def create_user(user_in: UserIn):
     return {"Creación": True}
 
 # GET HTTP method to consult an existing user
-@doku.get("/user/admon/{username}/")
+@doku.get("/user/admon/search/")
 async def search_user(username: str):
     user_in_db = get_user(username)
     if user_in_db == None:
